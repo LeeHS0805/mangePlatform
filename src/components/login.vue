@@ -5,7 +5,7 @@
                 <!--            头像区域-->
                 <div class="img_box">
                     <div class="avatar_box">
-                        <img src="../../assets/login/SIPC_withoutText.png" alt="">
+                        <img src="../assets/login/SIPC_withoutText.png" alt="">
                     </div>
                 </div>
                 <!--            表单区域-->
@@ -82,15 +82,20 @@
                         console.log(loginMsg)
                         let {data: {meta: {status, msg}}} = loginMsg
                         if (status == 200) {
+                            console.log(loginMsg)
                             this.$Message({
                                 message: msg,
                                 type: 'success',
                                 duration: 600
                             })
-                            let {data: {data: {token}}} = loginMsg
+                            let {data: {data: {token,username}}} = loginMsg
                             sessionStorage.setItem('login', token)
+                            let loginDate = new Date()
+                            sessionStorage.setItem('loginTime',loginDate)
                             //跳转到home主界面
-                            this.$router.push('/home')
+                            this.$router.push({path:'/home',query:{
+                                username:username
+                            }})
                         } else if (status > 200) {
                             if (msg.toString().indexOf('用户名密码')) {
                                 this.$Message({
@@ -118,8 +123,8 @@
 <style scoped lang="less">
     .login_container {
         background-color: #2b4b6b;
-        width: 100vw;
-        height: 100vh;
+        width: 100%;
+        height: 100%;
         display: -webkit-flex;
         display: flex;
         align-items: center;

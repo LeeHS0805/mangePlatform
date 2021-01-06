@@ -1,14 +1,15 @@
 <template>
-    <div class="home_container">
+    <div class="welcome_container">
+        1
     </div>
 </template>
 
 <script>
     export default {
-        name: "home.vue"
+        name: "welcome"
     }
 </script>
 
-<style lang="less" scoped>
+<style scoped>
 
 </style>
